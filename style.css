@@ -1,3 +1,39 @@
+body.dark {
+  background-color: #1e1e1e;
+  color: #f2f2f2;
+}
+
+body.dark input,
+body.dark textarea {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+body.dark .prompt-card {
+  background-color: #2a2a2a;
+  border-left: 4px solid #0099ff;
+}
+.prompt-card {
+  transition: all 0.3s ease-in-out;
+}
+input, textarea {
+  transition: background 0.2s ease-in-out;
+}
+
+
+#toggleTheme {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  background: #0077cc;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
 body {
   font-family: sans-serif;
   margin: 30px;
@@ -17,4 +53,30 @@ input, textarea {
   padding: 15px;
   margin-bottom: 10px;
   border-left: 4px solid #0077cc;
+}
+.toast {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 5px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.toast.show {
+  opacity: 1;
+}
+@media (max-width: 600px) {
+  input, textarea, button {
+    font-size: 16px;
+  }
+  .prompt-card {
+    padding: 10px;
+  }
 }

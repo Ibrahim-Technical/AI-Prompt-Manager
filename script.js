@@ -1,3 +1,8 @@
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js')
+    .then(() => console.log('Service Worker Registered'));
+}
+
 const form = document.getElementById("promptForm");
 const title = document.getElementById("title");
 const category = document.getElementById("category");
@@ -7,6 +12,10 @@ const search = document.getElementById("search");
 
 let prompts = JSON.parse(localStorage.getItem("prompts")) || [];
 let editingIndex = null;
+// Dark mode toggle
+document.getElementById("toggleTheme").addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+});
 
 function displayPrompts(filtered = prompts) {
   promptList.innerHTML = "";
