@@ -6,6 +6,7 @@ const promptList = document.getElementById("promptList");
 const search = document.getElementById("search");
 
 let prompts = JSON.parse(localStorage.getItem("prompts")) || [];
+let editingIndex = null;
 
 function displayPrompts(filtered = prompts) {
   promptList.innerHTML = "";
@@ -17,6 +18,7 @@ function displayPrompts(filtered = prompts) {
       <p><strong>${item.category}</strong></p>
       <p>${item.prompt}</p>
       <button onclick="copyPrompt(${index})">Copy</button>
+      <button onclick="editPrompt(${index})">Edit</button>
       <button onclick="deletePrompt(${index})">Delete</button>
     `;
     promptList.appendChild(div);
@@ -30,7 +32,14 @@ function savePrompt(e) {
     category: category.value,
     prompt: promptText.value,
   };
-  prompts.push(newPrompt);
+
+  if (editingIndex !== null) {
+    prompts[editingIndex] = newPrompt;
+    editingIndex = null;
+  } else {
+    prompts.push(newPrompt);
+  }
+
   localStorage.setItem("prompts", JSON.stringify(prompts));
   displayPrompts();
   form.reset();
@@ -47,6 +56,15 @@ function copyPrompt(index) {
   alert("Prompt copied!");
 }
 
+function editPrompt(index) {
+  const prompt = prompts[index];
+  title.value = prompt.title;
+  category.value = prompt.category;
+  promptText.value = prompt.prompt;
+  editingIndex = index;
+  window.scrollTo(0, 0);
+}
+
 search.addEventListener("input", () => {
   const keyword = search.value.toLowerCase();
   const filtered = prompts.filter(p =>
@@ -59,3 +77,4 @@ search.addEventListener("input", () => {
 
 form.addEventListener("submit", savePrompt);
 displayPrompts();
+
