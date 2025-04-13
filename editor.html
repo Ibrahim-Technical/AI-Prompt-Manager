@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>📝 Prompt Editor | AI Manager 2030</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #121212;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    header {
+      background: #0f62fe;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.4rem;
+    }
+
+    header button {
+      background: #33ffcc;
+      color: #000;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    header button:hover {
+      background: #29e6b7;
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      padding: 20px;
+      gap: 20px;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    textarea {
+      width: 100%;
+      height: 50vh;
+      font-size: 1rem;
+      padding: 16px;
+      border-radius: 10px;
+      border: none;
+      background: #1e1e1e;
+      color: #f5f5f5;
+      resize: vertical;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+    }
+
+    .preview {
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: inset 0 0 0 1px #333;
+      overflow-y: auto;
+      height: 100%;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .buttons button {
+      padding: 10px 20px;
+      font-size: 15px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+    }
+
+    .buttons .save {
+      background-color: #0f62fe;
+      color: white;
+    }
+
+    .buttons .cancel {
+      background-color: #555;
+      color: white;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (min-width: 768px) {
+      main {
+        flex-direction: row;
+      }
+
+      textarea {
+        width: 50%;
+        height: 100%;
+      }
+
+      .preview {
+        width: 50%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📝 Prompt Editor</h1>
+    <button onclick="goBack()">← Back</button>
+  </header>
+
+  <main>
+    <textarea id="editor" placeholder="Write or paste your AI prompt here..."></textarea>
+    <div class="preview" id="preview">✨ Live preview will appear here...</div>
+  </main>
+
+  <div class="buttons">
+    <button class="cancel" onclick="goBack()">Cancel</button>
+    <button class="save" onclick="savePrompt()">Save Prompt</button>
+  </div>
+
+  <script>
+    const editor = document.getElementById('editor');
+    const preview = document.getElementById('preview');
+
+    editor.addEventListener('input', () => {
+      preview.textContent = editor.value;
+    });
+
+    function savePrompt() {
+      const text = editor.value.trim();
+      if (!text) return alert('Prompt is empty!');
+      const existing = JSON.parse(localStorage.getItem('prompts')) || [];
+      existing.push({ id: Date.now(), title: 'Edited Prompt', category: 'Editor', prompt: text });
+      localStorage.setItem('prompts', JSON.stringify(existing));
+      alert('✅ Prompt saved!');
+      goBack();
+    }
+
+    function goBack() {
+      window.location.href = 'index.html';
+    }
+  </script>
+</body>
+</html>

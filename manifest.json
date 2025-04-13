@@ -1,16 +1,23 @@
 {
-  "name": "AI Prompt Manager",
+  "name": "AI Prompt Manager 2030",
   "short_name": "PromptApp",
   "start_url": "/AI-Prompt-Manager/index.html",
   "scope": "/AI-Prompt-Manager/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#0077cc",
+  "background_color": "#121212",
+  "theme_color": "#0f62fe",
+  "orientation": "portrait",
   "icons": [
     {
-      "src": "/AI-Prompt-Manager/icon.png",
+      "src": "icon.png",
       "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
       "type": "image/png"
     }
   ]
 }
+
