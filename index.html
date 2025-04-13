@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Prompt Manager</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>AI Prompt Manager</h1>
+
+  <form id="promptForm">
+    <input type="text" id="title" placeholder="Prompt title" required />
+    <input type="text" id="category" placeholder="Category (e.g. ChatGPT)" required />
+    <textarea id="prompt" placeholder="Enter your prompt..." required></textarea>
+    <button type="submit">Save Prompt</button>
+  </form>
+
+  <input type="text" id="search" placeholder="Search prompts..." />
+
+  <div id="promptList"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
