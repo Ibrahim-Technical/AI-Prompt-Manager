@@ -1,28 +1,31 @@
-<!DOCTYPE html>
+k<!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="manifest" href="manifest.json" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AI Prompt Manager</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
 </head>
-<div id="toast" class="toast">Prompt saved!</div>
-<button id="toggleTheme">🌙 Toggle Theme</button>
 <body>
-  <h1>AI Prompt Manager</h1>
+  <button id="toggleTheme">🌙 Toggle Theme</button>
+  
+  <div class="container">
+    <h1>AI Prompt Manager</h1>
 
-  <form id="promptForm">
-    <input type="text" id="title" placeholder="Prompt title" required />
-    <input type="text" id="category" placeholder="Category (e.g. ChatGPT)" required />
-    <textarea id="prompt" placeholder="Enter your prompt..." required></textarea>
-    <button type="submit">Save Prompt</button>
-  </form>
+    <form id="promptForm">
+      <input type="text" id="title" placeholder="Prompt title" required />
+      <input type="text" id="category" placeholder="Category (e.g. ChatGPT)" required />
+      <textarea id="prompt" placeholder="Enter your prompt..." required></textarea>
+      <button type="submit">Save Prompt</button>
+    </form>
 
-  <input type="text" id="search" placeholder="Search prompts..." />
+    <input type="text" id="search" placeholder="Search prompts..." />
+    <div id="promptList"></div>
+  </div>
 
-  <div id="promptList"></div>
-
+  <div id="toast" class="toast">Prompt saved!</div>
   <script src="script.js"></script>
 </body>
 </html>
+
