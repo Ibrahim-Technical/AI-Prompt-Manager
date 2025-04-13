@@ -1,4 +1,4 @@
-/* 🚀 style.css - 2030 UI Edition */
+/* 🌌 style.css - AI Prompt Manager 2030++ Supercharged Edition */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
@@ -37,49 +37,79 @@ body.dark {
   animation: fadeIn 1.2s ease-out;
 }
 
-h1 {
-  font-size: 3rem;
-  text-align: center;
-  margin-bottom: 40px;
+h1, h2, h3 {
+  font-weight: 700;
+  color: transparent;
   background: var(--gradient);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: center;
 }
 
-.highlight {
-  color: var(--accent);
-  font-weight: 700;
-}
+h1 { font-size: 3rem; margin-bottom: 40px; }
+h2 { font-size: 2rem; margin-bottom: 20px; }
+h3 { font-size: 1.4rem; margin: 0 0 10px; }
 
-form,
-.search-wrapper,
 .prompt-card {
   background: var(--card-light);
-  border-radius: 18px;
-  padding: 24px;
-  margin-bottom: 24px;
-  backdrop-filter: blur(12px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
   transition: all var(--transition);
+  position: relative;
+  animation: fadeIn 0.6s ease-in-out;
 }
 
-body.dark form,
-body.dark .search-wrapper,
 body.dark .prompt-card {
   background: var(--card-dark);
-  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.03);
 }
 
-label {
-  font-weight: 600;
-  display: block;
-  margin-bottom: 6px;
-  margin-top: 18px;
-  font-size: 15px;
+.prompt-card .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-input,
-textarea {
+.badge {
+  background: var(--accent);
+  color: #000;
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  border-radius: 6px;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(0,255,204,0.4);
+}
+
+.prompt-preview {
+  margin-top: 10px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.card-actions button {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.card-actions button:hover {
+  background: #0c4de2;
+}
+
+input, textarea {
   width: 100%;
   padding: 14px;
   font-size: 16px;
@@ -91,14 +121,12 @@ textarea {
   transition: all var(--transition);
 }
 
-body.dark input,
-body.dark textarea {
+body.dark input, body.dark textarea {
   background: #1e1e1e;
   color: #f5f5f5;
 }
 
-input:focus,
-textarea:focus {
+input:focus, textarea:focus {
   box-shadow: 0 0 0 3px var(--accent);
 }
 
@@ -155,7 +183,7 @@ button.animated-btn:hover {
   opacity: 1;
 }
 
-/* 🔥 Background Animation */
+/* ✨ Floating Gradient Background */
 #bg-animation {
   position: fixed;
   width: 200%;
@@ -199,6 +227,13 @@ button.animated-btn:hover {
   button.animated-btn {
     padding: 12px;
     font-size: 14px;
+  }
+  .card-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .prompt-card {
+    padding: 16px;
   }
 }
 

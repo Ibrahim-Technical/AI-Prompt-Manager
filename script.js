@@ -1,63 +1,62 @@
-// 🚀 script.js - AI Prompt Manager 2030 Interactive Logic
+k// 🚀 script.js - AI Prompt Manager 2030 Ultra Enhanced
 
-// 🌙 Toggle between dark and light themes
+// 🌙 Theme Toggle with memory
 const toggleThemeBtn = document.getElementById('toggleTheme');
-toggleThemeBtn.addEventListener('click', () => {
+toggleThemeBtn?.addEventListener('click', () => {
   document.body.classList.toggle('dark');
   localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
 });
 
-// 🌗 Load theme preference on startup
 window.addEventListener('DOMContentLoaded', () => {
   if (localStorage.getItem('theme') === 'dark') {
     document.body.classList.add('dark');
   }
 });
 
-// 📦 Save prompts to localStorage
+// 📦 Prompt Storage
 const promptForm = document.getElementById('promptForm');
 const promptList = document.getElementById('promptList');
 const toast = document.getElementById('toast');
+const searchInput = document.getElementById('search');
 
 function showToast(message = 'Saved!') {
-  toast.textContent = `✅ ${message}`;
+  if (!toast) return alert(message);
+  toast.textContent = message;
   toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 2500);
+  setTimeout(() => toast.classList.remove('show'), 3000);
 }
 
 function savePrompt(e) {
   e.preventDefault();
+  const title = document.getElementById('title')?.value.trim();
+  const category = document.getElementById('category')?.value.trim();
+  const prompt = document.getElementById('prompt')?.value.trim();
 
-  const title = document.getElementById('title').value.trim();
-  const category = document.getElementById('category').value.trim();
-  const prompt = document.getElementById('prompt').value.trim();
+  if (!title || !category || !prompt) return showToast('⚠️ Please fill out all fields.');
 
-  if (!title || !category || !prompt) return;
-
-  const newPrompt = {
-    id: Date.now(),
-    title,
-    category,
-    prompt
-  };
-
-  const saved = JSON.parse(localStorage.getItem('prompts')) || [];
-  saved.push(newPrompt);
+  const saved = getPrompts();
+  saved.push({ id: Date.now(), title, category, prompt });
   localStorage.setItem('prompts', JSON.stringify(saved));
-
-  renderPrompts();
   promptForm.reset();
-  showToast('Prompt saved successfully!');
+  renderPrompts();
+  showToast('✅ Prompt saved!');
 }
 
-promptForm.addEventListener('submit', savePrompt);
+function getPrompts() {
+  return JSON.parse(localStorage.getItem('prompts')) || [];
+}
 
-// 📄 Render prompt cards from storage
+function setPrompts(data) {
+  localStorage.setItem('prompts', JSON.stringify(data));
+}
+
 function renderPrompts() {
-  const saved = JSON.parse(localStorage.getItem('prompts')) || [];
-  const query = document.getElementById('search').value.toLowerCase();
+  const saved = getPrompts();
+  const query = searchInput?.value.toLowerCase() || '';
 
+  if (!promptList) return;
   promptList.innerHTML = '';
+
   saved.reverse().forEach(({ id, title, category, prompt }) => {
     if (
       title.toLowerCase().includes(query) ||
@@ -66,38 +65,53 @@ function renderPrompts() {
     ) {
       const card = document.createElement('div');
       card.classList.add('prompt-card');
+      card.setAttribute('data-id', id);
+
       card.innerHTML = `
-        <h3>${title}</h3>
-        <small><strong>Category:</strong> ${category}</small>
-        <p>${prompt}</p>
+        <div class="card-header">
+          <h3>${title}</h3>
+          <span class="badge">${category}</span>
+        </div>
+        <p class="prompt-preview">${prompt}</p>
         <div class="card-actions">
           <button onclick="copyPrompt('${encodeURIComponent(prompt)}')">📋 Copy</button>
           <button onclick="deletePrompt(${id})">🗑 Delete</button>
         </div>
       `;
+
       promptList.appendChild(card);
     }
   });
 }
 
 function deletePrompt(id) {
-  const saved = JSON.parse(localStorage.getItem('prompts')) || [];
+  const saved = getPrompts();
   const updated = saved.filter(p => p.id !== id);
-  localStorage.setItem('prompts', JSON.stringify(updated));
+  setPrompts(updated);
   renderPrompts();
-  showToast('Prompt deleted!');
+  showToast('🗑 Prompt deleted.');
 }
 
 function copyPrompt(rawText) {
   const text = decodeURIComponent(rawText);
   navigator.clipboard.writeText(text)
-    .then(() => showToast('Prompt copied to clipboard!'))
-    .catch(err => console.error('Copy failed:', err));
+    .then(() => showToast('📋 Prompt copied!'))
+    .catch(() => showToast('❌ Copy failed'));
 }
 
-// 🔍 Search functionality
-const searchInput = document.getElementById('search');
-searchInput.addEventListener('input', renderPrompts);
+// 🧠 Load sample prompts (optional)
+function loadSamplePrompts(sampleData) {
+  const current = getPrompts();
+  const newData = sampleData.filter(p => !current.find(c => c.title === p.title));
+  setPrompts([...current, ...newData]);
+  renderPrompts();
+  showToast('🧠 Sample prompts loaded!');
+}
 
-// 🔁 Initial render
+// 🔍 Search binding
+searchInput?.addEventListener('input', renderPrompts);
+promptForm?.addEventListener('submit', savePrompt);
+
+// 🌀 Init render
 renderPrompts();
+

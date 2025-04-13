@@ -1,61 +1,107 @@
-# 🧠 AI Prompt Manager
+# 🚀 AI Prompt Manager 2030
 
-A simple and powerful web app for saving, organizing, and managing your favorite AI prompts — built with vanilla JavaScript, HTML, and CSS.
+An advanced, offline-ready, beautifully designed app for saving, editing, exporting, and syncing your best AI prompts.
 
----
-
-## 📸 Demo
-
-👉 [Live Demo](https://ibrahim-technical.github.io/ai-prompt-manager) *(will work after deployment)*
+![screenshot](preview.png)
 
 ---
 
 ## ✨ Features
 
-- 📝 Save custom prompts with title and category
-- 🔍 Search prompts by keyword, category, or content
-- 📋 One-click copy to clipboard
-- 🗑️ Delete prompts anytime
-- 💾 Data is saved locally in your browser (no login needed)
-- 🌙 (Coming soon): dark mode, export, and Firebase sync
+- 🌗 **Dark & Light Mode** with persistent theme
+- 💾 **Local Storage** saving with full CRUD
+- ☁️ **Cloud Sync** via Firebase (with Google Auth)
+- 🧠 **Editor Mode** for fullscreen prompt creation
+- 📤 **Export Prompts** to `.json`, `.txt`, `.csv`
+- 📦 **Offline-First** (PWA with Service Worker)
+- 📱 **Installable** on any device (via manifest + icons)
+- 📋 **Copy, Search, Delete** prompts seamlessly
+- 🔍 **Responsive** for mobile and desktop
+- 🌈 **Animated UI** with gradients, shadows, and glass effects
 
 ---
 
-## 🚀 Getting Started
-
-### 1. Clone the repo:
+## 📂 File Structure
 
 ```bash
-git clone https://github.com/Ibrahim-Technical/ai-prompt-manager.git
-cd ai-prompt-manager
-
-### 2. Open index.html in your browser
-No setup needed — it runs in your browser directly.
-
-
-📂 Project Structure
-
-ai-prompt-manager/
-│
-├── index.html       # App layout
-├── style.css        # Styling
-├── script.js        # All core logic
-└── README.md        # You're reading it :)
-
-📄 License
-
-MIT — use it freely, credit appreciated 🙏
-
+├── index.html            # Main app UI
+├── editor.html           # Fullscreen editor
+├── style.css             # 2030-inspired global styles
+├── animations.css        # Custom animations and transitions
+├── script.js             # App logic: save/search/delete/copy
+├── export.js             # Export logic for JSON, TXT, CSV
+├── firebase-config.js    # Firebase Auth + Firestore
+├── sw.js                 # PWA service worker
+├── manifest.json         # PWA config
+├── icon.png / icon-512.png
+├── utils.js              # Format date, debounce, capitalize
+├── data.js               # Sample prompt dataset
+```
 
 ---
 
-### ✅ After replacing it:
+## 🧠 Demo Prompts
 
-1. Save the file  
-2. Run this in your terminal:
+```json
+{
+  "title": "Blog Post Writer",
+  "category": "ChatGPT",
+  "prompt": "Write a blog post about the future of AI in 2030..."
+}
+```
 
+---
+
+## 📲 Installation & Usage
+
+1. **Clone the project**
 ```bash
-git add README.md
-git commit -m "Update polished README"
-git push
+git clone https://github.com/YOUR_USERNAME/AI-Prompt-Manager.git
+cd AI-Prompt-Manager
+```
 
+2. **Enable GitHub Pages**
+- Go to `Settings > Pages > Source: main` + `/root`
+
+3. **Visit Live Site**
+```bash
+https://YOUR_USERNAME.github.io/AI-Prompt-Manager/
+```
+
+4. **Install PWA**
+- On mobile or desktop, click **Install** prompt
+- App works **offline** and looks like native
+
+---
+
+## 🔐 Firebase Setup (Optional)
+- Create a Firebase Project
+- Enable **Authentication > Google**
+- Enable **Firestore Database**
+- Replace credentials in `firebase-config.js`
+
+---
+
+## 🧪 Dev Tips
+
+- Use `editor.html` for distraction-free writing
+- Enable cloud sync to back up across devices
+- Use `loadSamplePrompts()` in `script.js` to preload ideas
+
+---
+
+## 🤝 Contributing
+PRs welcome! Fork the repo and go wild 🚀
+
+---
+
+## 🧑‍💻 Author
+
+Made with 💻 by **Ibrahim**  
+📍 GitHub: [@Ibrahim-Technical](https://github.com/Ibrahim-Technical)
+
+---
+
+## 📄 License
+
+MIT — Free to use, modify, distribute.

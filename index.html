@@ -1,11 +1,12 @@
-<!DOCTYPE html>
+k<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>🚀 AI Prompt Manager 2030</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="animations.css" />
   <link rel="manifest" href="manifest.json" />
   <link rel="icon" type="image/png" href="icon.png">
   <style>
@@ -20,31 +21,46 @@
 </head>
 <body>
   <div id="bg-animation"></div>
-  <button id="toggleTheme">🌙 Toggle Theme</button>
-  <div class="container">
-    <h1><span class="highlight">AI</span> Prompt Manager</h1>
 
-    <form id="promptForm">
-      <label for="title">📝 Title</label>
-      <input type="text" id="title" placeholder="Prompt title" required />
+  <header class="top-nav gradient-border">
+    <h1 class="logo">🧠 AI Prompt Manager</h1>
+    <nav class="nav-controls">
+      <button id="toggleTheme" class="nav-btn">🌗 Theme</button>
+      <button onclick="window.location.href='editor.html'" class="nav-btn">✍️ Editor</button>
+      <button onclick="exportPrompts('json')" class="nav-btn">📤 Export</button>
+      <button onclick="downloadAllPrompts()" class="nav-btn">⬇️ Download</button>
+    </nav>
+  </header>
 
-      <label for="category">📂 Category</label>
-      <input type="text" id="category" placeholder="Category (e.g. ChatGPT)" required />
+  <main class="container fade-in">
+    <section class="form-section card-glass">
+      <h2 class="section-heading">🆕 Create a <span class="highlight">Prompt</span></h2>
+      <form id="promptForm" class="form-card">
+        <label for="title">📝 Title</label>
+        <input type="text" id="title" placeholder="Prompt title" required />
 
-      <label for="prompt">💡 Prompt</label>
-      <textarea id="prompt" rows="4" placeholder="Enter your brilliant prompt..." required></textarea>
+        <label for="category">📂 Category</label>
+        <input type="text" id="category" placeholder="Category (e.g. ChatGPT)" required />
 
-      <button type="submit" class="animated-btn">💾 Save Prompt</button>
-    </form>
+        <label for="prompt">💡 Prompt</label>
+        <textarea id="prompt" rows="6" placeholder="Enter your creative AI prompt..." required></textarea>
 
-    <div class="search-wrapper">
-      <input type="text" id="search" placeholder="🔍 Search your saved prompts..." />
-    </div>
+        <button type="submit" class="animated-btn">💾 Save Prompt</button>
+      </form>
+    </section>
 
-    <div id="promptList"></div>
-  </div>
+    <section class="search-section card-glass">
+      <input type="text" id="search" class="search-box" placeholder="🔍 Search your prompts..." />
+    </section>
 
-  <div id="toast" class="toast">✅ Prompt saved successfully!</div>
+    <section id="promptList" class="prompt-grid responsive-grid"></section>
+  </main>
+
+  <div id="toast" class="toast slide-up">✅ Prompt saved successfully!</div>
+
+  <footer class="footer-glow">
+    <p>Made with ❤️ by <strong>Ibrahim</strong> — <a href="https://github.com/Ibrahim-Technical" target="_blank">@Ibrahim-Technical</a></p>
+  </footer>
 
   <script>
     window.addEventListener('load', () => {
@@ -52,5 +68,8 @@
     });
   </script>
   <script src="script.js"></script>
+  <script src="export.js"></script>
+  <script src="utils.js"></script>
 </body>
 </html>
+

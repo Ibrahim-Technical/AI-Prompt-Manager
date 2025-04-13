@@ -1,12 +1,13 @@
-{
+k{
   "name": "AI Prompt Manager 2030",
   "short_name": "PromptApp",
   "start_url": "/AI-Prompt-Manager/index.html",
   "scope": "/AI-Prompt-Manager/",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#121212",
   "theme_color": "#0f62fe",
-  "orientation": "portrait",
+  "description": "Create, edit, export, and sync AI prompts with style. Offline-ready, mobile-first, and cloud-connected.",
   "icons": [
     {
       "src": "icon.png",
@@ -17,7 +18,12 @@
       "src": "icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
+    },
+    {
+      "src": "maskable-icon.png",
+      "sizes": "1024x1024",
+      "type": "image/png",
+      "purpose": "maskable"
     }
   ]
 }
-

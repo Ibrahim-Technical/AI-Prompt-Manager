@@ -7,8 +7,7 @@
 function exportPrompts(format = 'json') {
   const prompts = JSON.parse(localStorage.getItem('prompts')) || [];
   if (!prompts.length) {
-    alert('❌ No prompts to export.');
-    return;
+    return showToast('❌ No prompts to export.');
   }
 
   let content = '';
@@ -36,10 +35,16 @@ function exportPrompts(format = 'json') {
       break;
 
     default:
-      alert('❌ Unsupported format.');
-      return;
+      return showToast('❌ Unsupported format.');
   }
 
+  downloadBlob(content, mimeType, fileExtension);
+}
+
+/**
+ * Trigger file download from a blob
+ */
+function downloadBlob(content, mimeType, fileExtension) {
   const blob = new Blob([content], { type: mimeType });
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
@@ -50,10 +55,16 @@ function exportPrompts(format = 'json') {
   document.body.removeChild(link);
   URL.revokeObjectURL(url);
 
-  alert(`✅ Exported as .${fileExtension}`);
+  showToast(`✅ Exported as .${fileExtension}`);
 }
 
-// 🔗 Example usage:
-// exportPrompts('json');
-// exportPrompts('txt');
-// exportPrompts('csv');
+/**
+ * Optional: visually notify export status (assumes toast system exists)
+ */
+function showToast(message) {
+  const toast = document.getElementById('toast');
+  if (!toast) return alert(message);
+  toast.textContent = message;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 3000);
+}
