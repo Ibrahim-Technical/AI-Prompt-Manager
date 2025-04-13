@@ -39,6 +39,7 @@ function savePrompt(e) {
   } else {
     prompts.push(newPrompt);
   }
+showToast("Prompt saved!");
 
   localStorage.setItem("prompts", JSON.stringify(prompts));
   displayPrompts();
@@ -50,10 +51,10 @@ function deletePrompt(index) {
   localStorage.setItem("prompts", JSON.stringify(prompts));
   displayPrompts();
 }
-
+showToast("Prompt deleted!");
 function copyPrompt(index) {
   navigator.clipboard.writeText(prompts[index].prompt);
-  alert("Prompt copied!");
+  showToast("Prompt copied!");
 }
 
 function editPrompt(index) {
@@ -77,3 +78,11 @@ search.addEventListener("input", () => {
 
 form.addEventListener("submit", savePrompt);
 displayPrompts();
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  toast.textContent = message;
+  toast.classList.add("show");
+  setTimeout(() => {
+    toast.classList.remove("show");
+  }, 2000);
+}
