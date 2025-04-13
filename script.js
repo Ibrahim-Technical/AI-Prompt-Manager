@@ -77,4 +77,3 @@ search.addEventListener("input", () => {
 
 form.addEventListener("submit", savePrompt);
 displayPrompts();
-
